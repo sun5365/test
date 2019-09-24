@@ -1,0 +1,16 @@
+app_code: bk_ilottery
+app_name: 幸运大抽奖
+author: 蓝鲸智云
+category: 办公应用
+introduction: 【幸运大抽奖】幸运大抽奖是一个抽奖程序，可应用于企业的推广活动或者年会抽奖，可根据自己的需求定制抽奖规则
+version: 1.0.3
+language: python
+is_use_celery: False
+is_use_celery_with_gevent: False
+container:
+    memory: 1024
+desktop:
+    width: 1200
+    height: 720
+    is_max: True
+date: 2018-01-28 12:00:00

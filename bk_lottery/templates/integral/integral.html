@@ -1,0 +1,77 @@
+<%inherit file="/base.html"/>
+
+<%block name="head">
+    <title>${DEPARTMENT}年会</title>
+    ${parent.head()}
+    <link href="${STATIC_URL}css/integral.css?v=${STATIC_VERSION}" rel="stylesheet">
+</%block>
+
+<%block name="navbar"></%block>
+
+<%block name="content">
+    <img src="${STATIC_URL}images/integral-background.jpg" class="bg"/>
+    <div class="integral-container">
+    ## % for item in integrals:
+    ##     <div class="integral-box">
+    ##         <div class="integral-body">
+    ##             <div class="integral-diagram" data-count="${item.count}">${item.count}分</div>
+    ##         </div>
+    ##         <div class="integral-foot">
+    ##             <p>${item.department}</p>
+    ##         </div>
+    ##     </div>
+    ## % endfor
+        ## <ul class="integral-list">
+        ## % for item in integrals:
+        ##     <li id="integral-${item.id}" data-id="${item.id}">
+        ##         <div class="integral-name">
+        ##             <span>${item.department}</span>
+        ##         </div>
+        ##         <div class="integral-count">
+        ##             <span>${item.count}</span>
+        ##         </div>
+        ##     </li>
+        ## % endfor
+        ## </ul>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>排名</th>
+                    <th>队伍</th>
+                    <th>总分</th>
+                    <th>天天爱答题</th>
+                    <th>企鹅保卫战</th>
+                    <th>全民领航侠</th>
+                </tr>
+            </thead>
+            <tbody class="integral-list">
+            % for index, item in enumerate(integrals):
+                <%
+                    color = ''
+                    if item.department == u'蓝队':
+                        color = 'blue'
+                    elif item.department == u'红队':
+                        color = 'red'
+                    elif item.department == u'绿队':
+                        color = 'green'
+                    elif item.department == u'橙队':
+                        color = 'orange'
+                %>
+                <tr class="integral-item ${color}" data-id="${item.id}" id="integral-${item.id}">
+                    <td class="integral-index">${index + 1}</td>
+                    <td class="integral-name">${item.department}</td>
+                    <td class="integral-count">${item.count}</td>
+                    <td class="integral-game1">${item.game1}</td>
+                    <td class="integral-game2">${item.game2}</td>
+                    <td class="integral-game3">${item.game3}</td>
+                </tr>
+            % endfor
+            </tbody>
+        </table>
+    </div>
+</%block>
+
+<%block name="script">
+<script src="${STATIC_URL}greensock/TweenMax.min.js?v=${STATIC_VERSION}"></script>
+<script src="${STATIC_URL}js/integral.js?v=${STATIC_VERSION}"></script>
+</%block>

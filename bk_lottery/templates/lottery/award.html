@@ -1,0 +1,143 @@
+<%inherit file="/base.html"/>
+
+<%block name="head">
+    <title>${DEPARTMENT}年会</title>
+    ${parent.head()}
+    <link href="${STATIC_URL}css/award.css?v=${STATIC_VERSION}" rel="stylesheet">
+    <link href="${STATIC_URL}css/spin.css?v=${STATIC_VERSION}" rel="stylesheet">
+    <script src="${STATIC_URL}js/spin.min.js?v=${STATIC_VERSION}"></script>
+    <script src="${STATIC_URL}js/roulette.min.js?v=${STATIC_VERSION}"></script>
+    <script>
+        var award_id = ${award.id};
+        var award_number = ${award.number};
+        var award_times = ${award.times};
+        var need_input = '${award.needInput}' === 'True'
+        var isChangeNumber = ${'true' if award.changeWinRateInPlace else 'false'}
+        var award_name = '${award.name};'
+    </script>
+</%block>
+
+<%block name="navbar"></%block>
+
+<%block name="content">
+    ## <audio src="${STATIC_URL}mp3/background2.mp3" autoplay="true" hidden="true" loop="true"></audio>
+    <img src="${STATIC_URL}images/packet_bg.jpg" class="bg" id="background-img"/>
+
+    ## 现场输入奖品奖项，再来一次按钮
+    <button type="button" id="draw-again" class="btn btn-primary btn-lg">继续抽奖</button>
+
+
+
+    <div class="modal fade" id="lotteryModal" tabindex="-1" role="dialog" aria-labelledby="lotteryModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <img id="background" src="${STATIC_URL}images/animation_bg.jpg" style="display: none;"/>
+                    <canvas id="space">Internet Explorer 8 Not Supported</canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="wheelModal" tabindex="-1" role="dialog" aria-labelledby="wheelModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <canvas id="wheel">Internet Explorer 8 Not Supported</canvas>
+                </div>
+                ## <div class="modal-footer">
+                ##     <div class="modal-button">
+                ##         <button class="btn btn-inverse btn-modal" id="wheelButton"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+                ##     </div>
+                ## </div>
+            </div>
+        </div>
+    </div>
+    <div class="award-container">
+        <div>
+            <img src="${STATIC_URL}images/lucky.png" id="lucky-title">
+        </div>
+        <div class=""></div>
+        % if award.needInput:
+        <div id="prize_bg" class="input">
+            ## <input type="text" class="form-control award-prize" name="prize" data-award="${award.id}" id="award-input">
+            <input type="text" class="award-prize" name="prize" data-award="${award.id}" id="award-input" autocomplete="off" value="${award.prize}">
+       % else:
+        <div id="prize_bg">
+            <p class="init"><span>${award.prize}</span></p>
+        % endif
+        </div>
+        <p id="award-forbidden">该奖项已抽过~</p>
+
+
+        <div class="winners-boxs">
+            % for index in xrange(award.number):
+            <div class="winner-box">
+                <div class="winner-avatar">
+                    <img src="${STATIC_URL}images/profile_bg.png" class="profile_bg">
+                    <img src="${STATIC_URL}avatars/default.png" alt=".." class="avatar">
+                    % if award.takeInScene:
+                    <img src="${STATIC_URL}images/refresh.png" class="redraw">
+                    % endif
+                </div>
+                <p class="rtx-name" style="margin-top: -10%;
+">XX</p>
+                <p class="rtx-chinese-name">XX</p>
+            </div>
+            % endfor
+        </div>
+    </div>
+    <div class="modal-button">
+        <p>&nbsp;</p>
+        <button class="btn btn-inverse btn-modal" id="play-button">
+            <img src="${STATIC_URL}images/start.png">
+        </button>
+        <button class="btn btn-inverse btn-modal operate-button" id="multiWinnersButton" style="display: none;">
+            <img src="${STATIC_URL}images/stop.png" id="stop-btn-bg">
+        </button>
+        <button class="btn btn-inverse btn-modal" id="comfirmButton" style="display: none;"><p>确认</p></button>
+    </div>
+    % if last_award is not None:
+    <div class="left-page">
+        <a href="${SITE_URL}lottery/award/${last_award.id}">
+            <img src="${STATIC_URL}images/left-icon.png">
+        </a>
+    </div>
+    % endif
+    % if next_award is not None:
+    <div class="right-page">
+        <a href="${SITE_URL}lottery/award/${next_award.id}">
+            <img src="${STATIC_URL}images/right-icon.png">
+        </a>
+    </div>
+    % endif
+</%block>
+
+<%block name="script">
+<script src="${SITE_URL}staff/static/all/${award.id}/"></script>
+<script src="${STATIC_URL}js/award.js?v=${STATIC_VERSION}"></script>
+<script>
+if (/生日礼物/.test(award_name)){
+    $("#background-img").attr("src", ceph_static_url + 'images/ticket_bg.jpg')
+}
+
+$(document).ready(function() {
+    $.ajax({
+        url: site_url + 'lottery/check_winners/',
+        type: 'post',
+        data: {
+            'name': award_id
+        },
+        dataType: 'json',
+        success: function (data, status) {
+
+            if (data.status ==2){
+                $("#play-button").hide();
+                $("#award_not").show()
+                $("#award-forbidden").show()
+                window.isDrew = true;
+            }
+        }
+    });
+})
+</script>
+</%block>

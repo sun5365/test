@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>lottry_guides.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+    <style>
+        /*---------------------------------------------------------------------------------------------
+         *  Copyright (c) Microsoft Corporation. All rights reserved.
+         *  Licensed under the MIT License. See License.txt in the project root for license information.
+         *--------------------------------------------------------------------------------------------*/
+
+        body {
+            font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+            font-size: 14px;
+            padding: 0 12px;
+            line-height: 22px;
+            word-wrap: break-word;
+        }
+
+        #code-csp-warning {
+            position: fixed;
+            top: 0;
+            right: 0;
+            color: white;
+            margin: 16px;
+            text-align: center;
+            font-size: 12px;
+            font-family: sans-serif;
+            background-color: #444444;
+            cursor: pointer;
+            padding: 6px;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, .25);
+        }
+
+        #code-csp-warning:hover {
+            text-decoration: none;
+            background-color: #007acc;
+            box-shadow: 2px 2px 2px rgba(0, 0, 0, .25);
+        }
+
+        body.scrollBeyondLastLine {
+            margin-bottom: calc(100vh - 22px);
+        }
+
+        body.showEditorSelection .code-line {
+            position: relative;
+        }
+
+        body.showEditorSelection .code-active-line:before,
+        body.showEditorSelection .code-line:hover:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -12px;
+            height: 100%;
+        }
+
+        body.showEditorSelection li.code-active-line:before,
+        body.showEditorSelection li.code-line:hover:before {
+            left: -30px;
+        }
+
+        .vscode-light.showEditorSelection .code-active-line:before {
+            border-left: 3px solid rgba(0, 0, 0, 0.15);
+        }
+
+        .vscode-light.showEditorSelection .code-line:hover:before {
+            border-left: 3px solid rgba(0, 0, 0, 0.40);
+        }
+
+        .vscode-dark.showEditorSelection .code-active-line:before {
+            border-left: 3px solid rgba(255, 255, 255, 0.4);
+        }
+
+        .vscode-dark.showEditorSelection .code-line:hover:before {
+            border-left: 3px solid rgba(255, 255, 255, 0.60);
+        }
+
+        .vscode-high-contrast.showEditorSelection .code-active-line:before {
+            border-left: 3px solid rgba(255, 160, 0, 0.7);
+        }
+
+        .vscode-high-contrast.showEditorSelection .code-line:hover:before {
+            border-left: 3px solid rgba(255, 160, 0, 1);
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        a {
+            color: #4080D0;
+            text-decoration: none;
+        }
+
+        a:focus,
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: 1px solid -webkit-focus-ring-color;
+            outline-offset: -1px;
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            border-bottom: 2px solid;
+        }
+
+        h1 {
+            padding-bottom: 0.3em;
+            line-height: 1.2;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+        }
+
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+
+        h1 code,
+        h2 code,
+        h3 code,
+        h4 code,
+        h5 code,
+        h6 code {
+            font-size: inherit;
+            line-height: auto;
+        }
+
+        a:hover {
+            color: #4080D0;
+            text-decoration: underline;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table > thead > tr > th {
+            text-align: left;
+            border-bottom: 1px solid;
+        }
+
+        table > thead > tr > th,
+        table > thead > tr > td,
+        table > tbody > tr > th,
+        table > tbody > tr > td {
+            padding: 5px 10px;
+        }
+
+        table > tbody > tr + tr > td {
+            border-top: 1px solid;
+        }
+
+        blockquote {
+            margin: 0 7px 0 5px;
+            padding: 0 16px 0 10px;
+            border-left: 5px solid;
+        }
+
+        code {
+            font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+            font-size: 14px;
+            line-height: 19px;
+        }
+
+        body.wordWrap pre {
+            white-space: pre-wrap;
+        }
+
+        .mac code {
+            font-size: 12px;
+            line-height: 18px;
+        }
+
+        pre:not(.hljs),
+        pre.hljs code > div {
+            padding: 16px;
+            border-radius: 3px;
+            overflow: auto;
+        }
+
+        /** Theming */
+
+        .vscode-light,
+        .vscode-light pre code {
+            color: rgb(30, 30, 30);
+        }
+
+        .vscode-dark,
+        .vscode-dark pre code {
+            color: #DDD;
+        }
+
+        .vscode-high-contrast,
+        .vscode-high-contrast pre code {
+            color: white;
+        }
+
+        .vscode-light code {
+            color: #A31515;
+        }
+
+        .vscode-dark code {
+            color: #D7BA7D;
+        }
+
+        .vscode-light pre:not(.hljs),
+        .vscode-light code > div {
+            background-color: rgba(220, 220, 220, 0.4);
+        }
+
+        .vscode-dark pre:not(.hljs),
+        .vscode-dark code > div {
+            background-color: rgba(10, 10, 10, 0.4);
+        }
+
+        .vscode-high-contrast pre:not(.hljs),
+        .vscode-high-contrast code > div {
+            background-color: rgb(0, 0, 0);
+        }
+
+        .vscode-high-contrast h1 {
+            border-color: rgb(0, 0, 0);
+        }
+
+        .vscode-light table > thead > tr > th {
+            border-color: rgba(0, 0, 0, 0.69);
+        }
+
+        .vscode-dark table > thead > tr > th {
+            border-color: rgba(255, 255, 255, 0.69);
+        }
+
+        .vscode-light h1,
+        .vscode-light hr,
+        .vscode-light table > tbody > tr + tr > td {
+            border-color: rgba(0, 0, 0, 0.18);
+        }
+
+        .vscode-dark h1,
+        .vscode-dark hr,
+        .vscode-dark table > tbody > tr + tr > td {
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .vscode-light blockquote,
+        .vscode-dark blockquote {
+            background: rgba(127, 127, 127, 0.1);
+            border-color: rgba(0, 122, 204, 0.5);
+        }
+
+        .vscode-high-contrast blockquote {
+            background: transparent;
+            border-color: #fff;
+        }
+    </style>
+
+    <style>
+        /* Tomorrow Theme */
+        /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+        /* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+        /* Tomorrow Comment */
+        .hljs-comment,
+        .hljs-quote {
+            color: #8e908c;
+        }
+
+        /* Tomorrow Red */
+        .hljs-variable,
+        .hljs-template-variable,
+        .hljs-tag,
+        .hljs-name,
+        .hljs-selector-id,
+        .hljs-selector-class,
+        .hljs-regexp,
+        .hljs-deletion {
+            color: #c82829;
+        }
+
+        /* Tomorrow Orange */
+        .hljs-number,
+        .hljs-built_in,
+        .hljs-builtin-name,
+        .hljs-literal,
+        .hljs-type,
+        .hljs-params,
+        .hljs-meta,
+        .hljs-link {
+            color: #f5871f;
+        }
+
+        /* Tomorrow Yellow */
+        .hljs-attribute {
+            color: #eab700;
+        }
+
+        /* Tomorrow Green */
+        .hljs-string,
+        .hljs-symbol,
+        .hljs-bullet,
+        .hljs-addition {
+            color: #718c00;
+        }
+
+        /* Tomorrow Blue */
+        .hljs-title,
+        .hljs-section {
+            color: #4271ae;
+        }
+
+        /* Tomorrow Purple */
+        .hljs-keyword,
+        .hljs-selector-tag {
+            color: #8959a8;
+        }
+
+        .hljs {
+            display: block;
+            overflow-x: auto;
+            color: #4d4d4c;
+            padding: 0.5em;
+        }
+
+        .hljs-emphasis {
+            font-style: italic;
+        }
+
+        .hljs-strong {
+            font-weight: bold;
+        }
+    </style>
+
+    <style>
+        /*
+         * Markdown PDF CSS
+         */
+
+        body {
+            font-family: "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+        }
+
+        pre {
+            background-color: #f8f8f8;
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+        }
+
+        pre:not(.hljs) {
+            padding: 23px;
+            line-height: 19px;
+        }
+
+        blockquote {
+            background: rgba(127, 127, 127, 0.1);
+            border-color: rgba(0, 122, 204, 0.5);
+        }
+
+        .emoji {
+            height: 1.4em;
+        }
+
+        /* for inline code */
+        :not(pre):not(.hljs) > code {
+            color: #C9AE75; /* Change the old color so it seems less like an error */
+            font-size: inherit;
+        }
+
+        /* Page Break : use <div class="page"/> to insert page break
+        -------------------------------------------------------- */
+        .page {
+            page-break-after: always;
+        }
+
+    </style>
+
+</head>
+<body>
+<style>
+    remark {
+        color: green;
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    caution {
+        color: red;
+        font-weight: bold;
+    }
+</style>
+<h1 style="border-bottom-style:none" align="center"><strong>抽奖程序使用说明书</strong></h1>
+<h1 id="1-center%E7%9B%AE%E5%BD%95center">1. 目录</h1>
+<ul>
+    <li><a href="#1-center%E7%9B%AE%E5%BD%95center">1. 目录</a></li>
+    <li><a href="#2-app%E5%8A%9F%E8%83%BD%E7%AE%80%E4%BB%8B">2. App功能简介</a>
+        <ul>
+            <li><a href="">2.1. 1. 添加/设置 抽奖计划</a></li>
+            <li><a href="">2.2. 添加/设置 奖项</a></li>
+            <li><a href="">2.3. 查看/导出 所有中奖者名单</a></li>
+        </ul>
+    </li>
+    <li><a href="#3-%E5%B9%B4%E4%BC%9A%E6%8A%BD%E5%A5%96app%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">3. 年会抽奖app使用说明</a>
+        <ul>
+            <li><a href="#31-%E5%88%9D%E5%A7%8B%E9%A1%B5%E9%9D%A2">3.1. 初始页面</a></li>
+            <li>
+                <a href="#32-%E5%AF%BC%E5%85%A5%E4%B8%AD%E5%A5%96%E5%80%99%E9%80%89%E4%BA%BA%E5%90%8D%E5%8D%95%E6%B7%BB%E5%8A%A0%E6%8A%BD%E5%A5%96%E5%A5%96%E9%A1%B9">3.2.
+                    导入中奖候选人名单，添加抽奖奖项</a></li>
+            <li><a href="#33-%E6%8A%BD%E5%A5%96">3.3. 抽奖</a></li>
+            <li><a href="#34-%E6%9F%A5%E7%9C%8B%E5%AF%BC%E5%87%BA-%E4%B8%AD%E5%A5%96%E8%80%85%E5%90%8D%E5%8D%95">3.4.
+                查看/导出 中奖者名单</a></li>
+            <li>
+                <a href="#35-%E8%AE%BE%E7%BD%AE%E5%8D%95%E4%B8%AA%E5%A5%96%E9%A1%B9%E4%B8%AD%E5%A5%96%E6%8E%92%E9%99%A4%E4%BA%BA%E5%91%98%E5%90%8D%E5%8D%95">3.5.
+                    设置单个奖项中奖排除人员名单</a></li>
+        </ul>
+    </li>
+    <li><a href="#4-%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E">4. 其他说明</a>
+        <ul>
+            <li><a href="#41-%E6%8A%BD%E5%A5%96%E9%80%BB%E8%BE%91">4.1. 抽奖逻辑</a></li>
+            <li><a href="">4.2. 奖项可中奖人数设置</a></li>
+        </ul>
+    </li>
+</ul>
+<h1 id="2-app%E5%8A%9F%E8%83%BD%E7%AE%80%E4%BB%8B">2. App功能简介</h1>
+<img src="${STATIC_URL}guide_imgs/main.png">
+<h2 id="21-%E6%B7%BB%E5%8A%A0%E8%AE%BE%E7%BD%AE-%E6%8A%BD%E5%A5%96%E8%AE%A1%E5%88%92-a-hrefplan%E3%80%90how%E3%80%91a">
+    2.1. 添加/设置 抽奖计划 <a href="#plan">【how】</a></h2>
+<ul>
+    <li>用户可自行添加抽奖计划，每个奖项属于单个抽奖计划</li>
+    <li>每个抽奖计划有两种状态: 激活和未激活，只有属于激活抽奖计划的奖项可进行抽奖</li>
+</ul>
+<h2 id="22-%E6%B7%BB%E5%8A%A0%E8%AE%BE%E7%BD%AE-%E5%A5%96%E9%A1%B9-a-hrefaward%E3%80%90how%E3%80%91a">2.2. 添加/设置 奖项 <a
+        href="#award">【how】</a></h2>
+<ul>
+    <li>每个奖项可设置两个中奖名单，每个中奖名单各自可设置中奖人数</li>
+    <li>可为每个人员指定不可参与某个奖项的抽取</li>
+    <li>可设置中奖奖品为现场输入</li>
+</ul>
+<h2 id="23-%E6%9F%A5%E7%9C%8B%E5%AF%BC%E5%87%BA-%E6%89%80%E6%9C%89%E4%B8%AD%E5%A5%96%E8%80%85%08%E5%90%8D%E5%8D%95-a-hrefexport%E3%80%90how%E3%80%91a">
+    2.3. 查看/导出 所有中奖者名单 <a href="#export">【how】</a></h2>
+<h1 id="3-%E5%B9%B4%E4%BC%9A%E6%8A%BD%E5%A5%96app%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E">3. 年会抽奖app使用说明</h1>
+<h2 id="31-%E5%88%9D%E5%A7%8B%E9%A1%B5%E9%9D%A2">3.1. 初始页面</h2>
+<img src="${STATIC_URL}guide_imgs/startup.png">
+<h2 id="32-%E5%AF%BC%E5%85%A5%E4%B8%AD%E5%A5%96%E5%80%99%E9%80%89%E4%BA%BA%E5%90%8D%E5%8D%95%EF%BC%8C%E6%B7%BB%E5%8A%A0%E6%8A%BD%E5%A5%96%E5%A5%96%E9%A1%B9">
+    3.2. 导入中奖候选人名单，添加抽奖奖项</h2>
+<ul>
+    <li>
+        <p>步骤1. 制作中奖候选人名单</p>
+        <p>用execl制作人员名单，格式如图</p>
+        <img src="${STATIC_URL}guide_imgs/sheet.png">
+        <p>表单分为3列，分别是
+            <remark>工号或者其他唯一名称（这里必须唯一，名单不可重复）</remark>
+            ，
+            <remark>中文名</remark>
+            ，
+            <remark>部门信息</remark>
+            ，
+            <remark>是否报备（报备的人员无法参与现场大奖）</remark>
+        </p>
+        <p>如果报备的人需要参与到全员抽奖中，请在管理员页面的<a href="${SITE_URL}admin/lottery/exclusionforall/" target="_blank">排出名单forAll</a>提前清空掉
+        </p>
+    </li>
+    <li>
+        <p>步骤2. 导入中奖候选者名单</p>
+        <ol>
+            <li>点击首页 <code>导入抽奖人员</code>
+                <img src="${STATIC_URL}guide_imgs/import_0.png"></li>
+            <li>点击<code>choose file</code>选择上一步制作的人员名单
+                <img src="${STATIC_URL}guide_imgs/import_1.png"></li>
+            <li>点击<code>提交</code>完成文件上传</li>
+        </ol>
+    </li>
+    <li>
+        <p>步骤3. 导入中奖候选者头像</p>
+        <ul>
+            <li>将候选者头像的图片名命名为名单中的 {英文名}.png</li>
+            <li>复制图片到文件夹 {项目根目录}/static/avatars/ ,如下图的rtx1.png rtx2.png ...,
+                如果名单中的候选者没有对应的头像图片，则后续的抽奖页面出现的头像为该文件夹下的default.png
+                <img src="${STATIC_URL}guide_imgs/path.png"></li>
+            <li>
+                <blockquote>
+                    <p>可分别加入高清照片(用于中奖者头像展示)和低清图片(用于抽奖动画展示)，其中低清图片命名规则为{英文名}_small.png</p>
+                </blockquote>
+            </li>
+        </ul>
+    </li>
+</ul>
+<span id="plan">
+<ul>
+<li>
+<p>步骤4. 添加抽奖计划</p>
+<blockquote>
+<ul>
+<li>之后添加每个的奖项都会属于这里添加的某个抽奖计划</li>
+<li>所有抽奖计划都有<remark>激活</remark>和<remark>未激活</remark>两种状态，在任一时刻只能有一种抽奖计划处于激活状态</li>
+</ul>
+</blockquote>
+<ol>
+<li>
+<p>点击首页 <code>管理页面</code></p>
+</li>
+<li>
+<p>第一次进入管理页面会要求输入管理员账号和密码，初始管理员账号:<br>
+Username: admin<br>
+Password: admin
+<img src="${STATIC_URL}guide_imgs/admin1.png"></p>
+</li>
+<li>
+<p>点击<code>抽奖计划</code>
+<img src="${STATIC_URL}guide_imgs/plan1.png">
+<img src="${STATIC_URL}guide_imgs/plan2.png">
+输入 <em>抽奖计划名称</em> 和 <em>抽奖计划描述</em>, 这里的 <em>抽奖计划名称</em> 和 <em>抽奖计划描述</em> 没有特殊含义可自定义，仅作为后面添加奖项的分类类别，最后点击保存<code>save</code>按钮</p>
+</li>
+<li>
+<p>激活所创建的抽奖计划
+<img src="${STATIC_URL}guide_imgs/plan3.png">
+如上图所示，然后点击<code>go</code>按钮，激活所选抽奖计划</p>
+</li>
+<li>
+<p>点击<code>View site</code>回到首页
+<img src="${STATIC_URL}guide_imgs/plan4.png"></p>
+</li>
+</ol>
+</li>
+</ul>
+<span id="award">
+<ul>
+<li>
+<p>步骤5. 添加奖项</p>
+<ol>
+<li>点击首页<code>添加奖项</code>
+<img src="${STATIC_URL}guide_imgs/award.png">
+<ul>
+<li>状态栏选择<code>已激活</code>, 否则无法在首页抽奖</li>
+<li><code>是否现场输入奖品</code>: 如果事先不确定奖品是什么内容，譬如嘉宾赞助等抽奖项，则可以勾选此项，在抽奖页面可以直接现场输入奖品名称</li>
+<li><caution>关联名单1和关联名单2必须选择两个不一样的名单</caution>，否则后面抽奖结果的动画不会正确展示</li>
+</ul>
+</li>
+</ol>
+<p><ol>按要求输入奖项各设置项后点击保存<code>save</code>按钮，页面自动跳转到首页
+    <img src="${STATIC_URL}guide_imgs/main2.png"></ol></p>
+</li>
+</ul>
+<h2 id="33-%E6%8A%BD%E5%A5%96">3.3. 抽奖</h2>
+<ol>
+<li>选中想要抽奖的奖项，点击<code>开始抽奖</code>
+<img src="${STATIC_URL}guide_imgs/begin1.png"></li>
+<li>点击开始按钮
+<img src="${STATIC_URL}guide_imgs/begin2.png"></li>
+<li>点击停止按钮出现中奖结果页面
+<img src="${STATIC_URL}guide_imgs/stop.png">
+<img src="${STATIC_URL}guide_imgs/result.png"></li>
+    <li>设置了 必须现场领奖，如果当前员工不在现场需要重新抽取，可以按照如下方法
+        <img src="${STATIC_URL}guide_imgs/restart.png"></li>
+</ol>
+<span id="export">
+<h2 id="34-%E6%9F%A5%E7%9C%8B%E5%AF%BC%E5%87%BA-%E4%B8%AD%E5%A5%96%E8%80%85%E5%90%8D%E5%8D%95">3.4. 查看/导出 中奖者名单</h2>
+<p>点击首页 <code>中奖者名单</code>
+点击 <code>导出excel</code> 可导出中奖名单excel表</p>
+<h2 id="35-%E8%AE%BE%E7%BD%AE%E5%8D%95%E4%B8%AA%E5%A5%96%E9%A1%B9%E4%B8%AD%E5%A5%96%E6%8E%92%E9%99%A4%E4%BA%BA%E5%91%98%E5%90%8D%E5%8D%95">3.5. 设置单个奖项中奖排除人员名单</h2>
+<blockquote>
+<p>设置排除名单可以将指定的人员排除在指定奖项的中奖候选人名单之外</p>
+</blockquote>
+<ul>
+    <ol>
+<li>如图设置
+<img src="${STATIC_URL}guide_imgs/ban1.png">
+<img src="${STATIC_URL}guide_imgs/ban2.png">
+<img src="${STATIC_URL}guide_imgs/ban3.png"></li>
+    </ol>
+</ul>
+<h1 id="4-%E5%85%B6%E4%BB%96%E8%AF%B4%E6%98%8E">4. 其他说明</h1>
+<h2 id="41-%E6%8A%BD%E5%A5%96%E9%80%BB%E8%BE%91">4.1. 抽奖逻辑</h2>
+<p>从该奖项设置中的中奖名单中<strong>除去已经中过奖的人和排除名单后</strong>，随机抽取每个名单对应的中奖人数</p>
+<h2 id="42-%E5%A5%96%E9%A1%B9%08%08%E5%8F%AF%E4%B8%AD%E5%A5%96%E4%BA%BA%E6%95%B0%E8%AE%BE%E7%BD%AE">4.2. 奖项可中奖人数设置</h2>
+<p>不能超过该奖项剩余中奖候选人总数</p>
+
+</body>
+</html>

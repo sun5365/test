@@ -1,0 +1,220 @@
+body {
+    padding-top: 0;
+}
+
+img.bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -100;
+}
+
+.integral-container {
+    position: absolute;
+    width: 80%;
+    height: 30%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    padding: 0;
+    text-align: center;
+}
+
+/*.integral-container .integral-box {
+    margin: 0;
+    height: 100%;
+    display: inline-block;
+    padding: 0 50px;
+}
+
+.integral-container .integral-box .integral-body {
+    width: 100%;
+    height: 95%;
+    display: block;
+}
+
+.integral-container .integral-box .integral-body .integral-diagram {
+    width: 100%;
+    height: 0%;
+    top: 100%;
+    display: block;
+    background-color: rgba(255,255,255,0.8);
+    position: relative;
+    font-size: 36px;
+    transition: all 2s ease;
+    -o-transition: all 2s ease;
+    -ms-transition: all 2s ease;
+    -moz-transition: all 2s ease;
+    -webkit-transition: all 2s ease;
+}
+
+.integral-container .integral-box .integral-foot {
+    text-align: center;
+    color: white;
+}
+
+.integral-container .integral-box .integral-foot p {
+    font-size: 20px;
+}
+
+
+.integral-container ul {
+    padding-left: 0;
+    width: 80%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.integral-container ul > li {
+    height: 20%;
+    opacity: 0;
+}
+
+.integral-container ul > li div {
+    height: 100%;
+}
+
+.integral-container ul > li div.integral-name {
+    float: left;
+    width: 15%;
+    text-align: center;
+    display: table;
+}
+
+.integral-container ul > li div.integral-name span {
+    font-size: 24px;
+    color: rgba(255,255,255,0.8);
+    vertical-align: middle;
+    display: table-cell;
+}
+
+.integral-container ul > li div.integral-count {
+    float: right;
+    width: 84%;
+    text-align: center;
+    background-color: rgba(255,255,255,0.8);
+    display: table;
+}
+
+.integral-container ul > li div.integral-count span {
+    font-size: 36px;
+    vertical-align: middle;
+    display: table-cell;
+}*/
+
+.table thead tr,
+.table tbody tr {
+    border: none;
+}
+
+.table thead tr th,
+.table tbody tr td {
+    text-align: center;
+    border: none;
+    vertical-align: middle;
+    font-weight: bolder;
+}
+
+.table {
+    border: 6px solid rgba(255,208,138,1.0);
+    border-top: 0;
+    border-collapse: separate;
+    border-radius: 10px;
+}
+
+.table thead {
+    background-color: rgba(255,208,138,1.0);
+    border-radius: 10px;
+}
+
+.table tbody {
+    border: 6px solid rgba(255,208,138,1.0);;
+}
+
+tr:first-child th:first-child {
+    border-top-left-radius: 5px;
+}
+
+tr:first-child th:last-child {
+    border-top-right-radius: 5px;
+}
+
+@media screen and (max-width: 800px) {
+    .table tr {
+        height: 60px;
+        font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 801px) and (max-width: 1024px) {
+    .table tr {
+        height: 75px;
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1280px) {
+    .table tr {
+        height: 90px;
+        font-size: 26px;
+    }
+}
+
+@media screen and (min-width: 1281px) and (max-width: 1600px) {
+    .table tr {
+        height: 105px;
+        font-size: 30px;
+    }
+}
+
+@media screen and (min-width: 1601px) {
+    .table tr {
+        height: 120px;
+        font-size: 34px;
+    }
+}
+
+.table tbody tr {
+    color: white;
+    font-weight: bolder;
+}
+
+.table tbody tr.red {
+    background-color: rgba(172,0,0,0.8);
+}
+
+.table tbody tr.orange {
+    background-color: rgba(210,98,0,0.8);
+}
+
+.table tbody tr.blue {
+    background-color: rgba(18,40,87,0.8);
+}
+
+.table tbody tr.green {
+    background-color: rgba(38,100,41,0.8);
+}
+
+
+.table thead tr th:nth-child(3) {
+    min-width: 80px;
+}
+
+.table tbody tr td:nth-child(3) {
+    min-width: 80px;
+    color: rgba(255,208,138,,1.0)
+}
+
+.table tbody tr td,
+.table thead tr th {
+    border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.table tbody tr td:last-child,
+.table thead tr th:last-child {
+    border-right: none;
+}
